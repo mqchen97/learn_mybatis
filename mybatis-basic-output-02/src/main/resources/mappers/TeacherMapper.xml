@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.atguigu.mapper.TeacherMapper">
+
+    <!-- 查询使用 select insert update delete标签
+            id = 方法名
+            resultType = 返回值类型
+            标签内编写SQL语句
+     -->
+    <insert id="insertTeacher">
+        <selectKey keyProperty="tId" resultType="string" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','')
+        </selectKey>
+        INSERT INTO t_teacher (t_id, t_name)
+        VALUES (#{tId}, #{tName})
+    </insert>
+
+    <resultMap id="tMap" type="teacher">
+        <id column="t_id" property="tId" />
+        <result column="t_name" property="tName" />
+    </resultMap>
+
+    <select id="queryById" resultMap="">
+        select * from t_teacher where t_id = #{id}
+    </select>
+</mapper>

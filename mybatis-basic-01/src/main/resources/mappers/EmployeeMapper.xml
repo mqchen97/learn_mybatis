@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.atguigu.mapper.EmployeeMapper">
+
+    <!--
+        #{ key }: 占位符 + 赋值   1.emp_id = ?   2.? = 赋值 ps: ? 不能代替容器名（表名 列名 容器名）
+        ${ key }: 字符串拼接 "emp_id = " + id              ps: 注入攻击问题
+    -->
+    <select id="queryById" resultType="com.atguigu.pojo.Employee">
+        select emp_id empId, emp_name empName, emp_salary empSalary
+        from t_emp where emp_id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from t_emp where emp_id = #{id}
+    </delete>
+
+    <select id="queryBySalary" resultType="com.atguigu.pojo.Employee">
+        select emp_id empId, emp_name empName, emp_salary empSalary
+        from t_emp where emp_salary = #{salary}
+    </select>
+
+    <insert id="insertEmp">
+        insert into t_emp (emp_name, emp_salary) values (#{empName}, #{empSalary})
+    </insert>
+
+    <select id="queryByNameAndSalary" resultType="com.atguigu.pojo.Employee">
+        select emp_id empId, emp_name empName, emp_salary empSalary
+        from t_emp where emp_name = #{name} and emp_salary = #{salary}
+    </select>
+
+    <!-- 传入map数据， key对应map中的key即可 -->
+    <insert id="insertEmpMap">
+        insert into t_emp (emp_name, emp_salary) values (#{empName}, #{empSalary})
+    </insert>
+</mapper>
