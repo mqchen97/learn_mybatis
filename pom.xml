@@ -12,6 +12,7 @@
         <module>mybatis-basic-01</module>
         <module>mybatis-basic-output-02</module>
         <module>mybatis-multitable-03</module>
+        <module>mybatis-dysql-04</module>
     </modules>
 
     <properties>
