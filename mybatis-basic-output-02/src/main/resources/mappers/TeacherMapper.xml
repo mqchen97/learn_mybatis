@@ -23,7 +23,7 @@
         <result column="t_name" property="tName" />
     </resultMap>
 
-    <select id="queryById" resultMap="">
+    <select id="queryById" resultMap="tMap">
         select * from t_teacher where t_id = #{id}
     </select>
 </mapper>

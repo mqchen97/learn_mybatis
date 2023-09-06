@@ -1,7 +1,9 @@
 import com.atguigu.mapper.EmployeeMapper;
 import com.atguigu.mapper.TeacherMapper;
+import com.atguigu.mapper.UserMapper;
 import com.atguigu.pojo.Employee;
 import com.atguigu.pojo.Teacher;
+import com.atguigu.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -44,6 +46,13 @@ public class MybatisTest {
         teacher.settName("billy");
         int row = teacherMapper.insertTeacher(teacher);
         System.out.println("row = " + row);
+    }
+
+    @Test
+    public void test_03(){
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+        List<User> users = userMapper.queryAll();
+        System.out.println("users = " + users);
     }
 
     // junit会在每一个@Test方法后执行@@AfterEach方法
